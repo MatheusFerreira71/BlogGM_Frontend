@@ -1,0 +1,34 @@
+<!-- Form de Envio de Comentários -->
+<div class="formWrapper">
+  <form
+    class="std-form"
+    #f="ngForm"
+    (ngSubmit)="create(f)"
+    *ngIf="loggedIn$ | async; else loggedOut"
+  >
+    <mat-form-field>
+      <mat-label>Faça seu comentário</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="texto"
+        name="texto"
+        [maxLength]="280"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="4"
+        placeholder="Digite seu comentário (Você tem 280 caracteres)"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-toolbar>
+      <mat-toolbar-row class="formButtons">
+        <button mat-raised-button type="submit" class="enviarButton">
+          Enviar comentário
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </form>
+  <ng-template #loggedOut>
+    <p class="formWarning">Para comentar, entre ou crie uma conta.</p>
+  </ng-template>
+</div>

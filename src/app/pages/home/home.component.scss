@@ -1,0 +1,22 @@
+.contentContainer {
+  max-width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 2rem;
+  text-align: left;
+
+  @media (max-width: 849px) {
+    display: block;
+  }
+
+  @media (max-width: 649px) {
+    max-width: 90%;
+  }
+}
+
+.reviewHiden {
+  @media (max-width: 849px) {
+    display: none;
+  }
+}

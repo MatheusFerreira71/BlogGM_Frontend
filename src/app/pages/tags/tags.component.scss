@@ -1,0 +1,8 @@
+.tagsContainer {
+  max-width: 80%;
+  margin: 0 auto;
+
+  @media (max-width: 649px) {
+    max-width: 90%;
+  }
+}

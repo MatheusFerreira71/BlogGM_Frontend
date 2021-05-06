@@ -1,0 +1,129 @@
+<div class="titleGm">{{ titulo }}</div>
+<div class="formCreator">
+  <form class="std-form" #f="ngForm" (ngSubmit)="handleSubmit(f)">
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input
+        matInput
+        required
+        placeholder="Informe o título do post"
+        [(ngModel)]="postBody.titulo"
+        name="postBody.titulo"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <input
+        matInput
+        required
+        placeholder="Informe a descrição do post"
+        [(ngModel)]="postBody.descricao"
+        name="postBody.descricao"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Categoria</mat-label>
+      <mat-select
+        required
+        [(ngModel)]="selectedCatId"
+        name="selectedCatId"
+        (selectionChange)="selectCats($event)"
+      >
+        <mat-option *ngFor="let cat of allCats" [value]="cat._id">
+          {{ cat.titulo }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="selectedCatId">
+      <mat-form-field id="catSecSelector" *ngIf="subCats.length > 0">
+        <mat-label>Categoria Secundária</mat-label>
+        <mat-select
+          required
+          [(ngModel)]="selectedSubCatId"
+          name="selectedSubCatId"
+        >
+          <mat-option
+            *ngFor="let subCat of subCats"
+            [value]="subCat.catFilha._id"
+            >{{ subCat.catFilha.titulo }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-chip-list">
+      <mat-chip-list required #chipList aria-label="Fruit selection">
+        <mat-chip
+          *ngFor="let tag of tags"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(tag)"
+        >
+          {{ tag.titulo }}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Tags."
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+    </mat-form-field>
+
+    <form class="imgUploader" *ngIf="uploadEnabler">
+      <label for="imgpost">Upload de imagem principal</label>
+      <input
+        id="imgpost"
+        type="file"
+        required
+        (change)="handleFileInput($event.target.files[0])"
+        style="display: none"
+        accept="image/jpg,image/jpeg,image/png,image/bmp"
+      />
+      <button
+        onclick="document.querySelector('#imgpost').click()"
+        class="imgButton"
+      >
+        Escolha a imagem
+      </button>
+      <span class="fileName">{{
+        imgName ? imgName : "Nenhum arquivo selecionado"
+      }}</span>
+    </form>
+
+    <div class="form-signup-background" *ngIf="upPercentage$">
+      <mat-progress-spinner
+        class="form-signup-spinner"
+        [value]="upPercentage$ | async"
+      ></mat-progress-spinner>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Texto do post</mat-label>
+      <textarea
+        style="height: 300px"
+        matInput
+        placeholder="Escreva o corpo do post"
+        [(ngModel)]="postBody.corpo"
+        name="postBody.corpo"
+        required
+      ></textarea>
+    </mat-form-field>
+
+    <mat-toolbar>
+      <mat-toolbar-row class="formButtons">
+        <button mat-raised-button type="submit" class="enviarButton">
+          Salvar
+        </button>
+        <button mat-raised-button type="button" (click)="voltar(f)">
+          Voltar
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </form>
+</div>

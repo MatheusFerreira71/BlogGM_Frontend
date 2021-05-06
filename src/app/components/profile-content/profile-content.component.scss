@@ -1,0 +1,228 @@
+.wrapperPc {
+  width: 100%;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.viewTitle {
+  padding: 2rem;
+  padding-bottom: 0;
+}
+
+.viewPc {
+  padding: 2rem;
+  padding-top: 0;
+}
+
+.titlePc {
+  font-family: "Saira", sans-serif;
+  color: white;
+  font-size: 21px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+
+  @media (max-width: 1199.98px) {
+    font-size: 18px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+}
+.titlePc::after {
+  content: "";
+  flex: 1;
+  background-color: white;
+  height: 4px;
+  border-radius: 20px;
+  margin-left: 0.5em;
+
+  @media (max-width: 1199.98px) {
+    height: 2px;
+  }
+}
+
+.titlePc::before {
+  @media (max-width: 1199.98px) {
+    content: "";
+    flex: 1;
+    background-color: white;
+    height: 2px;
+    border-radius: 20px;
+    margin-right: 0.5em;
+  }
+}
+
+.profile-content {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../../assets/img/profile-background.jpg");
+  background-size: cover;
+  position: relative;
+
+  @media (min-width: 1199.98px) {
+    background-image: url("../../../assets/img/profile-background-desk.jpg");
+    background-position: center;
+    display: grid;
+    grid-template-rows: 10% 10% 1fr;
+    font-size: 14px;
+  }
+}
+
+.profile-buttons {
+  position: absolute;
+  right: 0;
+  margin-right: 1.5rem;
+  top: 4rem;
+  display: flex;
+
+  @media (min-width: 1199.98px) {
+    top: 3rem;
+  }
+}
+
+.profile-edit-button {
+  outline: none;
+  border: none;
+  background: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(70%);
+  }
+
+  .mat-icon {
+    font-size: 18px;
+  }
+}
+
+.profile-info {
+  width: 100%;
+  height: 512px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 1.5rem;
+  font-size: 12px;
+  color: white;
+  padding: 0 2rem;
+
+  @media (min-width: 1199.98px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 14px;
+    height: 448px;
+  }
+}
+
+.profile-img {
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+  width: 128px;
+  height: 128px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: white;
+
+  img {
+    height: 128px;
+    width: auto;
+  }
+}
+
+.profile-persona {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5rem;
+}
+
+.profile-nick {
+  font-size: 18px;
+  font-weight: bold;
+  @media (min-width: 1199.98px) {
+    font-size: 24px;
+  }
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: 500;
+  @media (min-width: 1199.98px) {
+    font-size: 16px;
+  }
+}
+
+.profile-data {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  grid-gap: 2rem;
+
+  @media (min-width: 1199.98px) {
+    padding-right: 5rem;
+    font-size: 18px;
+  }
+}
+
+.data-content {
+  font-weight: 500;
+  display: grid;
+  span {
+    font-size: 10px;
+    color: hsl(0, 0%, 75%);
+    font-weight: 400;
+  }
+
+  @media (min-width: 1199.98px) {
+    span {
+      font-size: 14px;
+    }
+  }
+}
+
+.profile-bio {
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  p {
+    margin-top: 1rem;
+    font-size: 12px;
+  }
+  @media (min-width: 1199.98px) {
+    p {
+      text-align: justify;
+      font-size: 14px;
+    }
+  }
+}
+
+.profile-bio-title {
+  font-family: "Saira", sans-serif;
+  color: hsl(0, 0%, 75%);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 auto;
+
+  @media (min-width: 1199.98px) {
+    font-size: 16px;
+  }
+}

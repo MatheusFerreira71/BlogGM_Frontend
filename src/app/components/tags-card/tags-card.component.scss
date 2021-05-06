@@ -1,0 +1,133 @@
+.titleSearch {
+  display: grid;
+  grid-template-columns: 1fr 210px;
+  grid-gap: 1rem;
+
+  @media (max-width: 590px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+}
+
+.inputSearch {
+  height: 100%;
+  width: 180px;
+  outline: none;
+  border: 2px solid #0096dd;
+  border-right: none;
+  border-radius: 8px 0px 0px 8px;
+  background-color: #f1f1f1;
+  padding-left: 8px;
+  color: #2c4574;
+
+  &::placeholder {
+    color: #c4c4c4;
+  }
+
+  &:focus {
+    background-color: #fdfdfd;
+  }
+}
+
+.submitSearch {
+  width: auto;
+  height: 100%;
+  padding: 0 0.5rem;
+  outline: none;
+  border-radius: 0px 8px 8px 0px;
+  border: 2px solid #0096dd;
+  border-left: 0px solid #c4c4c4;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: #e1e1e1;
+  }
+
+  &:active,
+  &:active .submitIcon {
+    background-color: #30bdff;
+    color: #f1f1f1;
+  }
+}
+
+.submitIcon {
+  width: 18px;
+  height: 18px;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c4574;
+}
+
+.tags {
+  margin-top: 1rem;
+  width: 100%;
+  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  @media (max-width: 1049px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 649px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tagsFor {
+  &:hover {
+    .tagDelete {
+      display: block;
+    }
+  }
+}
+
+p {
+  margin-left: 2rem;
+}
+
+a {
+  margin-left: 2rem;
+  color: #2c4574;
+
+  &:hover {
+    color: #30bdff;
+    font-weight: bold;
+  }
+}
+
+p.tagTitle {
+  margin: 0;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.tagNumber {
+  background-color: #0096dd;
+  border-radius: 16px;
+  color: #fdfdfd;
+  width: 96px;
+}
+
+.tagDelete {
+  display: none;
+  position: absolute;
+  background: none;
+  outline: none;
+  border: none;
+  z-index: 20;
+  cursor: pointer;
+  color: red;
+}

@@ -1,0 +1,274 @@
+* {
+  p {
+    margin: 0;
+  }
+}
+
+.wrapperP {
+  width: 100%;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+  margin-bottom: 2rem;
+}
+
+.paddingTitle {
+  padding: 1rem;
+  padding-bottom: 0;
+  margin: 0;
+}
+
+// Título
+
+.postagemHeader {
+  width: 100%;
+  border-radius: 8px 8px 0px 0px;
+  background-color: #ccedff;
+  height: 100%;
+  color: #2c4574;
+}
+
+.postagemTitulo {
+  font-size: 24px;
+  font-weight: 500;
+  padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  .pSubtitulo {
+    font-size: 18px;
+    font-weight: 400;
+
+    @media (max-width: 649px) {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 649px) {
+    font-size: 21px;
+  }
+}
+
+// Compartilhamento e usuário
+
+.postagemSocial {
+  width: 100%;
+  // background-color: #f1f1f1;
+  padding: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 649px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+.postagemInfo {
+  font-size: 36px;
+  color: #0096dd;
+
+  i + i {
+    margin-left: 0.5rem;
+  }
+
+  i:hover {
+    color: #2c4574;
+  }
+  @media (max-width: 649px) {
+    text-align: center;
+    align-content: center;
+  }
+}
+
+.postagemInfo {
+  .postagemData {
+    font-size: 14px;
+    color: #c4c4c4;
+  }
+}
+
+.postagemUsuario {
+  display: grid;
+  grid-template-columns: 1fr 32px;
+  align-items: center;
+  max-width: 180px;
+
+  @media (max-width: 649px) {
+    margin: 0 auto;
+  }
+}
+
+.nomeUsuario {
+  padding-right: 1rem;
+  margin-right: -0.5rem;
+  color: #0a0a0a;
+  border-bottom: 3px solid #30bdff;
+}
+
+.porUsuario {
+  color: #2c4574;
+  margin-right: 0.5rem;
+}
+
+.fotoUsuario {
+  height: 32px;
+  width: 32px;
+  overflow: none;
+
+  img {
+    height: inherit;
+    width: inherit;
+    border-radius: 25px;
+  }
+}
+
+// Corpo
+
+.postagemTexto {
+  width: 85%;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-bottom: 1.5rem;
+  padding-top: 0.5rem;
+  text-align: justify;
+  color: #0a0a0a;
+  font-size: 16px;
+  font-family: "Roboto Slab", serif;
+  // letter-spacing: 0.03em;
+  font-weight: 400;
+  word-wrap: break-word;
+  white-space: pre-line;
+
+  p {
+    margin: 1rem;
+    margin-top: 0;
+  }
+
+  @media (max-width: 649px) {
+    text-align: left;
+  }
+}
+
+.imgPost {
+  padding: 0.5rem 2rem;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  height: 320px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 320px;
+    width: auto;
+  }
+  @media (max-width: 799px) {
+    height: 160px;
+
+    img {
+      max-height: 160px;
+    }
+  }
+}
+
+// Família (Tags/Categorias)
+
+.postagemControl {
+  display: grid;
+  max-width: 100%;
+  grid-template-columns: 1fr 80px;
+  grid-gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-top: 1px solid #c4c4c4;
+  padding: 1rem;
+
+  @media (max-width: 590px) {
+    grid-template-columns: 1fr;
+  }
+
+  .titleGm {
+    margin: 0;
+  }
+}
+
+.postagemFamilia {
+  color: #c4c4c4;
+  font-size: 14px;
+}
+
+.postagemCategorias::before {
+  content: "Categorias: ";
+}
+
+.postagemTags::before {
+  content: "Assuntos: ";
+}
+
+.buttonControl {
+  width: 40px;
+  height: 40px;
+  display: flex;
+
+  button {
+    width: inherit;
+    height: inherit;
+    background: none;
+    outline: none;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  mat-icon {
+    width: inherit;
+    height: inherit;
+    font-size: 36px;
+    color: #c4c4c4;
+    margin: 0;
+
+    &:hover {
+      color: #0096dd;
+    }
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #212121;
+  color: #fdfdfd;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 110%;
+  left: -15%;
+  margin-left: -35px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

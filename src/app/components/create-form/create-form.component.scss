@@ -1,0 +1,115 @@
+.formCreator {
+  max-width: 100%;
+  background-image: url(../../../assets/img/postCreatorBackground.png);
+  background-position: top right;
+  background-repeat: no-repeat;
+  grid-template-columns: 50%;
+
+  @media (max-width: 1249px) {
+    background-image: url(../../../assets//img/postCreatorBackground2.png);
+  }
+
+  @media (max-width: 1099px) {
+    background-image: none;
+  }
+}
+
+.std-form {
+  max-width: 100%;
+  // margin: 0 auto;
+
+  mat-form-field {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin-right: 30px;
+  }
+}
+
+.formButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.enviarButton {
+  background-color: #0096dd;
+  color: #f1f1f1;
+}
+
+input.matInput {
+  border: 1px solid red !important;
+}
+
+.imgUploader {
+  max-width: 50%;
+  padding: 1rem 0;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 32px 1fr;
+  color: #939393;
+  align-items: center;
+  justify-items: center;
+
+  @media (max-width: 799px) {
+    max-width: 100%;
+  }
+}
+
+.imgButton {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  height: 32px;
+  width: 156px;
+  outline: none;
+  background: none;
+  font-weight: bold;
+  color: #0096dd;
+  border: 3px solid #0096dd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+  &:hover {
+    filter: brightness(1.15);
+  }
+
+  &:active {
+    filter: brightness(0.85);
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.26);
+  }
+}
+
+.fileName {
+  color: #939393;
+  word-break: break-word;
+}
+
+textarea {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 0.5rem !important;
+}
+
+.form-signup-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: hsla(0, 0%, 0%, 0.25);
+  z-index: 2;
+}
+
+.form-signup-spinner,
+.form-signup-background {
+  position: fixed;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.form-signup-spinner {
+  z-index: 3;
+}

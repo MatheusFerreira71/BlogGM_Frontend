@@ -1,0 +1,40 @@
+<div class="formContainer">
+  <div class="wrapperGm">
+    <div class="titleGm">Login de Usuário</div>
+    <div class="formCard">
+      <form class="std-form" #f="ngForm" (ngSubmit)="handleSubmit(f)">
+        <div>
+          <mat-form-field>
+            <mat-label>Informe seu E-mail</mat-label>
+            <input name="email" type="email" matInput [formControl]="emailFormControl" [(ngModel)]="email" required
+              [errorStateMatcher]="matcher" placeholder="pat@example.com" />
+            <mat-error *ngIf="
+                emailFormControl.hasError('email') &&
+                !emailFormControl.hasError('required')
+              ">
+              Por favor informe um endereço de e-mail válido
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              E-mail é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Informe sua senha</mat-label>
+          <input name="password" matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" required />
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-toolbar>
+          <button mat-raised-button type="submit" class="enviarButton">
+            Entrar
+          </button>
+        </mat-toolbar>
+      </form>
+    </div>
+  </div>
+</div>

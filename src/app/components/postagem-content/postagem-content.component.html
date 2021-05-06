@@ -1,0 +1,90 @@
+<div class="wrapperP">
+  <div
+    class="postagemWrapper"
+    *ngIf="uniquePost && categorias && tags && formatedDate"
+  >
+    <div class="postagemHeader">
+      <div class="postagemTitulo">
+        <p>
+          {{ uniquePost.post.titulo }}
+        </p>
+        <p class="pSubtitulo">
+          {{ uniquePost.post.descricao }}
+        </p>
+      </div>
+    </div>
+    <div class="postagemSocial">
+      <div class="postagemInfo">
+        <div class="postagemData">
+          <p>Atualizado em {{ formatedDate }}</p>
+        </div>
+        <div class="postagemShare">
+          <i class="fab fa-facebook-square"></i>
+          <i class="fab fa-twitter-square"></i>
+        </div>
+      </div>
+      <div class="postagemUsuario">
+        <span class="nomeUsuario"
+          ><span class="porUsuario">Por:</span
+          >{{ uniquePost.post.usuario.username }}</span
+        >
+        <div class="fotoUsuario">
+          <img src="{{ userAvatar }}" />
+        </div>
+      </div>
+    </div>
+    <div class="postagemTexto">
+      <div class="imgPost">
+        <img
+          src="{{ banner }}"
+          alt="Imagem do post: {{ uniquePost.post.titulo }}"
+        />
+      </div>
+      <div>
+        {{ uniquePost.post.corpo }}
+      </div>
+    </div>
+    <div class="postagemControl">
+      <div class="postagemFamilia">
+        <p class="postagemCategorias">
+          {{ categorias.join(", ") }}
+        </p>
+        <p class="postagemTags">
+          {{ tags.join(", ") }}
+        </p>
+      </div>
+      <div
+        class="buttonControl"
+        *ngIf="(loggedIn$ | async) && (user$ | async)?.isAdm"
+      >
+        <button class="tooltip" routerLink="/editar/{{ uniquePost.post._id }}">
+          <mat-icon>create</mat-icon>
+          <span class="tooltiptext">Edite este post</span>
+        </button>
+        <button class="tooltip" (click)="removePost()">
+          <mat-icon>clear</mat-icon>
+          <span class="tooltiptext">Remova este post</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapperP">
+  <div class="paddingTitle">
+    <div class="titleGm">Comentários</div>
+    <span>Gostaria de deixar um comentário sobre o conteúdo?</span>
+  </div>
+  <app-comentario-form
+    (criarComentario)="refreshComents()"
+    *ngIf="uniquePost"
+    [postId]="uniquePost.post._id"
+  >
+  </app-comentario-form>
+  <app-comentario-card
+    *ngIf="uniquePost"
+    [comentsData]="uniquePost.comentarios"
+    (comentRemoved)="refreshComents()"
+  >
+  </app-comentario-card>
+</div>

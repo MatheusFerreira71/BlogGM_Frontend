@@ -1,0 +1,147 @@
+<div class="formContainer">
+  <div class="wrapperGm">
+    <div class="titleGm">Cadastro de Usuário</div>
+    <div class="formCard">
+      <form class="std-form" #f="ngForm" (ngSubmit)="handleSubmit(f)">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            required
+            placeholder="Informe o seu nome"
+            [(ngModel)]="nome"
+            name="nome"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Nome de Usuário</mat-label>
+          <input
+            matInput
+            required
+            placeholder="Informe o seu nome de usuário"
+            [(ngModel)]="username"
+            name="username"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>E-mail</mat-label>
+          <input
+            name="email"
+            type="email"
+            matInput
+            [formControl]="emailFormControl"
+            [(ngModel)]="email"
+            required
+            [errorStateMatcher]="matcher"
+            placeholder="pat@example.com"
+          />
+          <mat-error
+            *ngIf="
+              emailFormControl.hasError('email') &&
+              !emailFormControl.hasError('required')
+            "
+          >
+            Por favor informe um endereço de e-mail válido
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            E-mail é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Biografia</mat-label>
+          <textarea
+            matInput
+            placeholder="Escreva a sua biografia (opcional)"
+            [(ngModel)]="bio"
+            name="bio"
+          ></textarea>
+        </mat-form-field>
+
+        <div class="imgUploader">
+          <label for="avatar">Foto de Perfil</label>
+          <input
+            style="display: none"
+            id="avatar"
+            placeholder="Escolha um arquivo"
+            type="file"
+            (change)="handleFileInput($event.target.files[0])"
+            accept="image/jpg,image/jpeg,image/png,image/bmp"
+          />
+          <button
+            onclick="document.querySelector('#avatar').click()"
+            class="imgButton"
+          >
+            Escolha a imagem
+          </button>
+          <span class="fileName">{{
+            avatar ? avatar : "Nenhum arquivo selecionado"
+          }}</span>
+          <div class="form-signup-background" *ngIf="upPercentage$">
+            <mat-progress-spinner
+              class="form-signup-spinner"
+              [value]="upPercentage$ | async"
+            ></mat-progress-spinner>
+          </div>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Senha</mat-label>
+          <input
+            name="password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            [(ngModel)]="password"
+            required
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Confirmação de Senha</mat-label>
+          <input
+            name="confirmPassword"
+            matInput
+            [type]="hideConfirm ? 'password' : 'text'"
+            [(ngModel)]="confirmPassword"
+            required
+          />
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hideConfirm = !hideConfirm"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{
+              hideConfirm ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-toolbar>
+          <mat-toolbar-row class="formButtons">
+            <button mat-raised-button type="submit" class="enviarButton">
+              Salvar
+            </button>
+            <button mat-raised-button type="button" (click)="voltar(f)">
+              Voltar
+            </button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+p {
+  margin: 0;
+}
+
+// Comentário
+
+.comentarioWrapper {
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  word-wrap: break-word;
+  background-color: #f1f1f1;
+}
+
+.comentarioControl {
+  border-bottom: 1px solid #d1d1d1;
+  margin-bottom: 1rem;
+}
+
+.dataButtonControl {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+
+  span {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+
+.excluirButton {
+  color: #8d8d8d;
+  cursor: pointer;
+  &:hover {
+    color: #dd0000;
+  }
+}
+
+.timestamp {
+  color: #8d8d8d;
+  cursor: default;
+}
+
+.comentarioContent {
+  max-width: 100%;
+  // padding-bottom: 1rem;
+  background: url("../../../assets/img/commentBackground.png");
+  background-position: center right;
+  background-repeat: no-repeat;
+
+  @media (max-width: 599px) {
+    background-image: none;
+    min-height: auto;
+  }
+}
+
+.comentarioUser {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 32px 30ch;
+  align-items: center;
+  max-width: 180px;
+  margin-bottom: 0.5rem;
+}
+
+.userImg {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-height: 36px;
+    width: auto;
+  }
+}
+
+.userName {
+  font-weight: 500;
+  font-size: 16px;
+  color: #2c4574;
+  cursor: default;
+}
+
+.comentarioText {
+  width: calc(100% - 118px);
+  padding-left: 1rem;
+  font-size: 14px;
+  color: #212121;
+  word-break: break-all;
+
+  @media (max-width: 599px) {
+    width: 100%;
+    padding: 0;
+    font-size: 12px;
+  }
+
+  p {
+    width: 90%;
+    margin: 0 auto;
+    word-wrap: break-word;
+  }
+}

@@ -1,0 +1,54 @@
+<div class="wrapperPc">
+  <div class="profile-content" *ngIf="user">
+    <div class="viewTitle titlePc">Perfil do Usuário</div>
+    <div class="profile-buttons">
+      <button class="profile-edit-button">
+        Remover ADM <mat-icon class="profile-edit">lock_open</mat-icon>
+      </button>
+      <button class="profile-edit-button">
+        Tornar ADM <mat-icon class="profile-edit">lock</mat-icon>
+      </button>
+      <button class="profile-edit-button" [matMenuTriggerFor]="menu">
+        Editar conta <mat-icon class="profile-edit">edit</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Alterar senha</button>
+        <button mat-menu-item>Editar dados</button>
+        <button mat-menu-item>Desativar conta</button>
+      </mat-menu>
+      <button class="profile-edit-button">
+        Deletar <mat-icon class="profile-edit">delete</mat-icon>
+      </button>
+    </div>
+    <div class="profile-info">
+      <div>
+        <div class="profile-img">
+          <img src="{{userPic}}" alt="Imagem do perfil do usuário" />
+        </div>
+        <div class="profile-persona">
+          <span class="profile-nick"> {{ user.username }} </span>
+          <span class="profile-name"> {{ user.nome }} </span>
+        </div>
+      </div>
+      <div class="profile-data">
+        <div class="data-content">
+          {{ (commentCount$ | async) }}<span>{{ (commentCount$ | async) == 1 ? "Comentário" : "Comentários"}}</span>
+        </div>
+        <div class="data-content">
+          {{ user.createdAt | date:'shortDate' }}
+          <span>Inscrição</span>
+        </div>
+        <div class="data-content">
+          {{user.isAdm ? "Administrador" : "Usuário"}}
+          <span>Cargo</span>
+        </div>
+        <div class="profile-bio">
+          <span class="profile-bio-title">Biografia</span>
+          <p>
+            {{ user.bio }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

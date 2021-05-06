@@ -1,0 +1,53 @@
+p {
+  margin: 0;
+}
+
+.formWrapper {
+  border-bottom: 1px solid #c4c4c4;
+}
+
+// FORM de comentário
+
+.std-form {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  mat-form-field {
+    min-width: 150px;
+    width: 100%;
+    margin-right: 30px;
+  }
+}
+
+mat-toolbar {
+  background: none;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.enviarButton {
+  background-color: #0096dd;
+  color: #f1f1f1;
+}
+
+mat-label,
+.formWarning {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  font-size: 14px;
+  color: #c4c4c4;
+}
+
+textarea,
+input {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 0.5rem !important;
+}

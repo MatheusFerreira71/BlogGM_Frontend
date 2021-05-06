@@ -1,0 +1,48 @@
+<!-- <li class="userDropdown">
+  <div class="userSelector">
+    <span>Entrar</span>
+    <i class="fas fa-user-circle"></i>
+  </div>
+  <div class="userDropdown-content">
+    <ul>
+      <li>
+        <a>Gustavo</a>
+      </li>
+      <li>
+        <a>Matheus</a>
+      </li>
+      <li>
+        <a>Visitante</a>
+      </li>
+    </ul>
+  </div>
+</li> -->
+
+<div mat-button [matMenuTriggerFor]="menu" class="userSelector">
+  <span>Entrar</span>
+  <i class="fas fa-user-circle"></i>
+</div>
+<mat-menu #menu="matMenu">
+  <button class="userButton" mat-menu-item>
+    Gustavo
+    <div class="userImg">
+      <img
+        src="https://pbs.twimg.com/profile_images/1104230019600134144/rK0eJls6_400x400.png"
+      />
+    </div>
+  </button>
+  <button class="userButton" mat-menu-item>
+    Matheus
+    <div class="userImg">
+      <img
+        src="https://avatars0.githubusercontent.com/u/44984801?s=460&u=93d692bc3440e7773b20c01c31d9a0e09c21a9e4&v=4"
+      />
+    </div>
+  </button>
+  <button class="userButton" mat-menu-item>
+    Visitante
+    <div class="userImg">
+      <img src="../../../../assets/img/profileAvatar.png" />
+    </div>
+  </button>
+</mat-menu>

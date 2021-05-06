@@ -1,0 +1,10 @@
+<div *ngIf="postData">
+  <div class="destaqueBigNews" routerLink="/post/{{ postData.bigPost._id }}">
+    <div class="imgBigNews">
+      <img src="{{ postData.bigPost.banner }}" />
+    </div>
+    <div class="tituloBigNews">
+      <p>{{ postData.bigPost.titulo }}</p>
+    </div>
+  </div>
+</div>

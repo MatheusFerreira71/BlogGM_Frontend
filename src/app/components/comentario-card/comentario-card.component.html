@@ -1,0 +1,14 @@
+<div class="wrapperGm marginTop">
+  <div class="comentarioCard">
+    <!-- Comentário dos Usuários -->
+    <div class="comentarioWrapper">
+      <app-comentario-content
+        *ngFor="let coment of comentsData"
+        [coment]="coment"
+        class="teste"
+        (comentRemoved)="comentRemoved.emit()"
+      >
+      </app-comentario-content>
+    </div>
+  </div>
+</div>

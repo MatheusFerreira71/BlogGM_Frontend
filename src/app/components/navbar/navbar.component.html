@@ -1,0 +1,65 @@
+<mat-toolbar class="navbarWrapper">
+  <!-- Logo e Menu Navbar -->
+  <div>
+    <div class="navLogo">
+      <a [routerLink]="['/']">
+        <mat-icon class="miniLogo">games</mat-icon>
+      </a>
+    </div>
+    <!-- Menu -->
+    <div class="navbarMenu">
+      <ul>
+        <li><a [routerLink]="['/']">Início</a></li>
+        <li><a [routerLink]="['/tags']">Assuntos</a></li>
+        <!-- Dropdown Categorias -->
+        <app-dropdown-categorias></app-dropdown-categorias>
+      </ul>
+    </div>
+  </div>
+  <div class="navbar-right-content">
+    <!-- Busca -->
+    <form class="searchBar" #f="ngForm" (ngSubmit)="pesquisar(f)">
+      <input
+        [(ngModel)]="pesquisa"
+        type="search"
+        placeholder="Buscar..."
+        class="inputSearch"
+        id="navbarSearch"
+        name="pesquisa"
+      />
+      <button type="submit" class="submitSearch">
+        <mat-icon class="submitIcon">search</mat-icon>
+      </button>
+    </form>
+    <!-- Usuário -->
+    <button
+      *ngIf="loggedIn$ | async; else loggedOut"
+      mat-button
+      [matMenuTriggerFor]="menu"
+    >
+      <div class="userWrapper">
+        <span>{{ (user$ | async)?.username }}</span>
+        <div class="userPic" *ngIf="profilePic">
+          <img src="{{ profilePic }}" />
+        </div>
+      </div>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button routerLink="/me" mat-menu-item>
+        <span class="newsArrow">Perfil</span>
+      </button>
+      <button mat-menu-item (click)="signOut()">Sair</button>
+    </mat-menu>
+
+    <ng-template #loggedOut>
+      <ul class="ul-logout">
+        <li><a routerLink="/auth">Entrar</a></li>
+        <li><a routerLink="/sign-up">Criar Conta</a></li>
+      </ul>
+    </ng-template>
+  </div>
+  <button class="navMenu">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>

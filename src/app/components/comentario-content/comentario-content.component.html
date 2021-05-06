@@ -1,0 +1,30 @@
+<!-- Comentário começa aqui -->
+<div class="comentarioControl">
+  <div class="comentarioContent">
+    <div class="comentarioUser">
+      <div class="userImg">
+        <img src="{{ avatarUrl }}" alt="Imagem do usuário" />
+      </div>
+      <span class="userName">{{ coment.usuario.username }}</span>
+    </div>
+
+    <div class="comentarioText">
+      <p>
+        {{ coment.texto }}
+      </p>
+    </div>
+  </div>
+
+  <div class="dataButtonControl">
+    <span class="timestamp">{{ coment.updatedAt }}</span>
+    <span
+      class="excluirButton"
+      (click)="removeComent(coment._id)"
+      *ngIf="
+        (loggedIn$ | async) &&
+        ((user$ | async)?._id === coment.usuario._id || (user$ | async)?.isAdm)
+      "
+      >Excluir</span
+    >
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.formContainer {
+  max-width: 80%;
+  margin: 0 auto;
+
+  @media (max-width: 649px) {
+    max-width: 90%;
+  }
+}
+
+.formCard {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: 100%;
+  }
+}
+
+.std-form {
+  max-width: 100%;
+  // margin: 0 auto;
+
+  mat-form-field {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin-right: 30px;
+  }
+}
+
+.formButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.enviarButton {
+  background-color: #0096dd;
+  color: #f1f1f1;
+}

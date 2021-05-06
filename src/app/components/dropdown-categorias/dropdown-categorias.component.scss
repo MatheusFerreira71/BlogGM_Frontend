@@ -1,0 +1,118 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #212121;
+}
+
+li {
+  float: left;
+}
+
+li a,
+.dropbtn {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover,
+.navbarDropdown:hover {
+  background-color: #313131;
+}
+
+.newsArrow:after {
+  content: "►";
+  margin-left: 50%;
+  font-size: 16px;
+  color: #f1f1f1;
+
+  @media (max-width: 799px) {
+    content: "▼";
+  }
+}
+
+.navbarDropdownNews:hover .newsArrow:after {
+  content: "◀";
+  @media (max-width: 799px) {
+    content: "▲";
+  }
+}
+
+li a,
+.dropbtn {
+  display: inline-block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.navbarDropdown {
+  display: inline-block;
+}
+
+.navbarDropdown {
+  position: absolute;
+}
+
+.navbarDropdown-content {
+  display: none;
+  position: relative;
+  // background-color: #383838;
+  min-width: 160px;
+  // box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+.navbarDropdown-content a {
+  color: #f1f1f1;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.navbarDropdown-content a:hover {
+  background-color: #424242;
+}
+
+.navbarDropdown:hover .navbarDropdown-content {
+  display: block;
+}
+
+.navbarDropdownNews {
+  width: 100%;
+  position: relative;
+}
+
+.navbarDropdownCats {
+  position: absolute;
+  top: 0;
+  left: 100%;
+
+  @media (max-width: 799px) {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+}
+
+.navbarDropdownNews:hover .navbarDropdownCats {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.navbarDropdownNews .navbarDropdownCats {
+  display: none;
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+
+  @media (max-width: 799px) {
+    top: auto;
+    left: auto;
+  }
+}

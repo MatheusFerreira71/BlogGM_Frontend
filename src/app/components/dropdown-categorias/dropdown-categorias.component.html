@@ -1,0 +1,27 @@
+<li class="navbarDropdown" *ngIf="allCategorias">
+  <a href="javascript:void(0)" class="dropbtn">Categorias</a>
+  <div class="navbarDropdown-content" *ngFor="let categoria of allCategorias">
+    <a
+      routerLink="/busca/PostCategoria"
+      [queryParams]="{ id: categoria._id }"
+      *ngIf="categoria.subs === undefined; else elseBlock"
+      class="Primeiro"
+      >{{ categoria.titulo }}</a
+    >
+    <ng-template class="Segundo" #elseBlock>
+      <li class="navbarDropdownNews">
+        <a class="newsArrow">{{ categoria.titulo }}</a>
+        <ul class="navbarDropdownCats">
+          <li class="navbarDropdownLi" *ngFor="let subCat of categoria.subs">
+            <a
+              routerLink="/busca/PostCategoria"
+              [queryParams]="{ id: subCat._id }"
+            >
+              {{ subCat.titulo }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ng-template>
+  </div>
+</li>

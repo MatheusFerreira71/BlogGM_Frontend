@@ -1,0 +1,92 @@
+.postsCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: 100%;
+  }
+}
+
+.postInfo {
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 590px) {
+    grid-template-columns: 1fr;
+    align-content: center;
+  }
+
+  .titleGm {
+    margin: 0;
+  }
+}
+
+.addButton {
+  width: 38px;
+  height: 38px;
+  button {
+    width: inherit;
+    height: inherit;
+    background: none;
+    outline: none;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  mat-icon {
+    width: inherit;
+    height: inherit;
+    font-size: 36px;
+    color: #0096dd;
+    margin: 0;
+
+    &:hover {
+      color: #30bdff;
+    }
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #212121;
+  color: #fdfdfd;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 110%;
+  left: -15%;
+  margin-left: -35px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

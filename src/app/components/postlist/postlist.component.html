@@ -1,0 +1,40 @@
+<div *ngIf="postData">
+  <div *ngIf="postData.length === 0; else elseBlock">
+    <p class="searchFail">
+      Lamentamos, nenhum resultado encontrado com esse critério de pesquisa...
+    </p>
+  </div>
+  <ng-template #elseBlock>
+    <div
+      *ngFor="
+        let post of postData
+          | paginate: { itemsPerPage: itemsPerPage, currentPage: paginaAtual };
+        let i = index
+      "
+      class="postNews"
+      routerLink="/post/{{ post.postId ? post.postId._id : post._id }}"
+    >
+      <div class="imgPostNews">
+        <img src="{{ post.postId ? post.postId.banner : post.banner }}" />
+      </div>
+      <div class="tituloPostNews">
+        <p>
+          {{ post.postId ? post.postId.titulo : post.titulo }}
+        </p>
+        <p class="descricaoPostNews">
+          {{ post.postId ? post.postId.descricao : post.descricao }}
+        </p>
+      </div>
+    </div>
+  </ng-template>
+
+  <pagination-controls
+    (pageChange)="paginaAtual = $event"
+    autoHide="true"
+    previousLabel="Anterior"
+    nextLabel="Próximo"
+    screenReaderPaginationLabel="shazam"
+    class="paginacaoNews"
+    responsive="true"
+  ></pagination-controls>
+</div>

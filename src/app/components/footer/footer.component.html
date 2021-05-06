@@ -1,0 +1,42 @@
+<footer class="footerWrapper">
+  <div class="footerSocial">
+    <ul class="footerTitle">
+      <p>GM Blog</p>
+    </ul>
+    <ul class="footerRedes">
+      <a href="http://facebook.com" target="_blank"
+        ><span class="fab fa-facebook"></span
+      ></a>
+      <a href="http://twitter.com" target="_blank"
+        ><span class="fab fa-twitter"></span
+      ></a>
+      <a href="http://instagram.com" target="_blank"
+        ><span class="fab fa-instagram"></span
+      ></a>
+    </ul>
+    <ul class="footerCopyright">
+      <p>© 2020 GMDev</p>
+      <p>Todos os direitos reservados</p>
+    </ul>
+  </div>
+  <div class="footerConteudo" *ngIf="allPrincipais && allSubs">
+    <ul class="footerCategorias">
+      <a
+        routerLink="/busca/PostCategoria"
+        [queryParams]="{ id: catPri._id }"
+        *ngFor="let catPri of allPrincipais"
+      >
+        {{ catPri.titulo }}
+      </a>
+    </ul>
+    <ul class="footerSubCat">
+      <a
+        routerLink="/busca/PostCategoria"
+        [queryParams]="{ id: catSec._id }"
+        *ngFor="let catSec of allSubs"
+      >
+        {{ catSec.titulo }}
+      </a>
+    </ul>
+  </div>
+</footer>

@@ -1,0 +1,64 @@
+// li {
+//   display: block;
+//   text-decoration: none;
+//   height: 100%;
+// }
+// .userSelector:hover .userDropdown {
+//   display: block;
+// }
+
+// .userDropdown {
+//   position: absolute;
+//   display: inline-block;
+// }
+
+.userSelector {
+  height: 100%;
+  margin-left: 1rem;
+  padding: 0 1rem;
+  background-color: #0096dd;
+  color: #fdfdfd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  > i {
+    padding-left: 8px;
+  }
+  i,
+  span {
+    cursor: pointer;
+  }
+}
+
+.userButton {
+  display: flex;
+  align-items: center;
+  > div {
+    margin-left: 1rem;
+  }
+}
+
+.userImg {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+
+  img {
+    border-radius: 50%;
+    height: inherit;
+    width: inherit;
+    overflow: hidden;
+  }
+}
+
+// .userDropdown-content {
+//   position: absolute;
+//   z-index: 1;
+// }
+
+// ul {
+//   padding: 0.5rem 1rem;
+//   text-decoration: none;
+//   background-color: #fdfdfd;
+//   color: #2c4574;
+// }

@@ -1,0 +1,32 @@
+<div class="wrapperGm">
+  <div class="titleSearch">
+    <div class="titleGm">Descubra novos assuntos</div>
+    <form class="searchBar" #f="ngForm" (ngSubmit)="pesquisar(f)">
+      <input [(ngModel)]="pesquisa" type="search" placeholder="Buscar..." class="inputSearch" id="tagSearch"
+        name="pesquisa" />
+      <button type="submit" class="submitSearch">
+        <mat-icon class="submitIcon">search</mat-icon>
+      </button>
+    </form>
+  </div>
+  <div class="tags" *ngIf="allTags">
+    <div class="tagsFor" *ngFor="
+        let tag of allTags
+          | paginate: { itemsPerPage: 42, currentPage: paginaAtual };
+        let i = index
+      ">
+      <button type="button" class="tagDelete" (click)="remove(tag._id)"
+        *ngIf="tag.qtdePosts === 0 && (loggedIn$ | async) && (user$ | async)?.isAdm">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <a routerLink="/busca/PostTag" [queryParams]="{ id: tag._id }">
+        <p class="tagTitle">
+          {{ tag.titulo }}
+          <span class="tagNumber">Posts: {{ tag.qtdePosts }}</span>
+        </p>
+      </a>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="paginaAtual = $event" autoHide="true" previousLabel="Anterior" nextLabel="Próximo"
+    screenReaderPaginationLabel="shazam" class="paginacaoNews" responsive="true"></pagination-controls>
+</div>
