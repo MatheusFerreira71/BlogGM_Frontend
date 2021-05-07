@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUri: "http://localhost:3000/",
+  apiBaseUri: "https://bloggm-backend.herokuapp.com/",
   firebaseConfig: {
     apiKey: "AIzaSyBedxfhpqLkqxaq31fN0HyIdggtzfYjNoQ",
     authDomain: "bloggm-e845e.firebaseapp.com",
