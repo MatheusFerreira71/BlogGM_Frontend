@@ -1,8 +1,5 @@
 <div class="wrapperP">
-  <div
-    class="postagemWrapper"
-    *ngIf="uniquePost && categorias && tags && formatedDate"
-  >
+  <div class="postagemWrapper" *ngIf="uniquePost && categorias && tags && formatedDate">
     <div class="postagemHeader">
       <div class="postagemTitulo">
         <p>
@@ -24,21 +21,17 @@
         </div>
       </div>
       <div class="postagemUsuario">
-        <span class="nomeUsuario"
-          ><span class="porUsuario">Por:</span
-          >{{ uniquePost.post.usuario.username }}</span
-        >
-        <div class="fotoUsuario">
-          <img src="{{ userAvatar }}" />
-        </div>
+        <a routerLink="/profile/{{uniquePost.post.usuario._id}}">
+          <span class="nomeUsuario"><span class="porUsuario">Por:</span>{{ uniquePost.post.usuario.username }}</span>
+          <div class="fotoUsuario">
+            <img src="{{ userAvatar }}" />
+          </div>
+        </a>
       </div>
     </div>
     <div class="postagemTexto">
       <div class="imgPost">
-        <img
-          src="{{ banner }}"
-          alt="Imagem do post: {{ uniquePost.post.titulo }}"
-        />
+        <img src="{{ banner }}" alt="Imagem do post: {{ uniquePost.post.titulo }}" />
       </div>
       <div>
         {{ uniquePost.post.corpo }}
@@ -53,10 +46,7 @@
           {{ tags.join(", ") }}
         </p>
       </div>
-      <div
-        class="buttonControl"
-        *ngIf="(loggedIn$ | async) && (user$ | async)?.isAdm"
-      >
+      <div class="buttonControl" *ngIf="(loggedIn$ | async) && (user$ | async)?.isAdm">
         <button class="tooltip" routerLink="/editar/{{ uniquePost.post._id }}">
           <mat-icon>create</mat-icon>
           <span class="tooltiptext">Edite este post</span>
@@ -75,16 +65,8 @@
     <div class="titleGm">Comentários</div>
     <span>Gostaria de deixar um comentário sobre o conteúdo?</span>
   </div>
-  <app-comentario-form
-    (criarComentario)="refreshComents()"
-    *ngIf="uniquePost"
-    [postId]="uniquePost.post._id"
-  >
+  <app-comentario-form (criarComentario)="refreshComents()" *ngIf="uniquePost" [postId]="uniquePost.post._id">
   </app-comentario-form>
-  <app-comentario-card
-    *ngIf="uniquePost"
-    [comentsData]="uniquePost.comentarios"
-    (comentRemoved)="refreshComents()"
-  >
+  <app-comentario-card *ngIf="uniquePost" [comentsData]="uniquePost.comentarios" (comentRemoved)="refreshComents()">
   </app-comentario-card>
 </div>

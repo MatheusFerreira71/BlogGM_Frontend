@@ -51,8 +51,8 @@ export class ProfileContentComponent implements OnInit {
         }
       });
     } else {
-      const { path } = this.route.snapshot.routeConfig;
-      this.userSrv.findById(path).subscribe(user => {
+      const { id } = this.route.snapshot.params;
+      this.userSrv.findById(id).subscribe(user => {
         if (user) {
           this.commentCount$ = this.comentSrv.countById(user._id);
           this.fireSrv.getFileUrl(`avatars/${user.avatar}`).subscribe(url => this.userPic = url);
