@@ -64,7 +64,8 @@ const routes: Routes = [
   },
   {
     path: "me",
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [LoggedGuard]
   },
   {
     path: "profile/:id",

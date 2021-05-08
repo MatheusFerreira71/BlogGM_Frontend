@@ -27,4 +27,8 @@ export class UserService {
   findById(id: string): Observable<ReturnedUser> {
     return this.http.get<ReturnedUser>(`${this.apiUri}/${id}`);
   }
+
+  update(user: ReturnedUser) {
+    return this.http.put(`${this.apiUri}/`, user);
+  }
 }
