@@ -1,14 +1,12 @@
 <!-- Comentário começa aqui -->
 <div class="comentarioControl">
   <div class="comentarioContent">
-    <div class="comentarioUser">
-      <a routerLink="/profile/{{coment.usuario._id}}">
-        <div class="userImg">
-          <img src="{{ avatarUrl }}" alt="Imagem do usuário" />
-        </div>
-        <span class="userName">{{ coment.usuario.username }}</span>
-      </a>
-    </div>
+    <a class="comentarioUser" routerLink="/profile/{{ coment.usuario._id }}">
+      <div class="userImg">
+        <img src="{{ avatarUrl }}" alt="Imagem do usuário" />
+      </div>
+      <span class="userName">{{ coment.usuario.username }}</span>
+    </a>
 
     <div class="comentarioText">
       <p>
@@ -19,9 +17,14 @@
 
   <div class="dataButtonControl">
     <span class="timestamp">{{ coment.updatedAt }}</span>
-    <span class="excluirButton" (click)="removeComent(coment._id)" *ngIf="
+    <span
+      class="excluirButton"
+      (click)="removeComent(coment._id)"
+      *ngIf="
         (loggedIn$ | async) &&
         ((user$ | async)?._id === coment.usuario._id || (user$ | async)?.isAdm)
-      ">Excluir</span>
+      "
+      >Excluir</span
+    >
   </div>
 </div>
