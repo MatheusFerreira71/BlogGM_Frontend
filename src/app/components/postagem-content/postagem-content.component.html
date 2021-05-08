@@ -19,8 +19,15 @@
           <p>Atualizado em {{ formatedDate }}</p>
         </div>
         <div class="postagemShare">
-          <i class="fab fa-facebook-square"></i>
-          <i class="fab fa-twitter-square"></i>
+          <a
+            target="_blank"
+            href="https://www.facebook.com/sharer/sharer.php?u={{ shareUrl }}"
+          >
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a target="_blank" href="http://twitter.com/share?url={{ shareUrl }}">
+            <i class="fab fa-twitter-square"></i>
+          </a>
         </div>
       </div>
       <a

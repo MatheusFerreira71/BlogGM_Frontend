@@ -8,7 +8,7 @@ import { ConfirmDialogComponent } from "src/app/components/confirm-dialog/confir
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { FirebaseService } from "src/app/services/firebase.service";
-import { UniquePost, ReturnedUser, Reducers } from '../../interfaces';
+import { UniquePost, ReturnedUser, Reducers } from "../../interfaces";
 
 @Component({
   selector: "app-postagem-content",
@@ -16,7 +16,6 @@ import { UniquePost, ReturnedUser, Reducers } from '../../interfaces';
   styleUrls: ["./postagem-content.component.scss"],
 })
 export class PostagemContentComponent implements OnInit {
-
   uniquePost: UniquePost;
   categorias: string[];
   tags: string[];
@@ -25,6 +24,7 @@ export class PostagemContentComponent implements OnInit {
   loggedIn$: Observable<boolean>;
   userAvatar: string;
   banner: string;
+  shareUrl = `https://bloggm-frontend.herokuapp.com/${this.router.url}`;
 
   constructor(
     private postagemSrv: PostagemService,
@@ -35,8 +35,8 @@ export class PostagemContentComponent implements OnInit {
     private store: Store<Reducers>,
     private fireSrv: FirebaseService
   ) {
-    this.user$ = store.select(store => store.AuthState.user);
-    this.loggedIn$ = store.select(store => store.AuthState.loggedIn);
+    this.user$ = store.select((store) => store.AuthState.user);
+    this.loggedIn$ = store.select((store) => store.AuthState.loggedIn);
   }
 
   ngOnInit(): void {
@@ -47,8 +47,12 @@ export class PostagemContentComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get("id");
     this.postagemSrv.listarPost(id).subscribe((post) => {
       this.uniquePost = post;
-      this.fireSrv.getFileUrl(`avatars/${this.uniquePost.post.usuario.avatar}`).subscribe(url => this.userAvatar = url);
-      this.fireSrv.getFileUrl(`banners/${this.uniquePost.post.banner}`).subscribe(url => this.banner = url);
+      this.fireSrv
+        .getFileUrl(`avatars/${this.uniquePost.post.usuario.avatar}`)
+        .subscribe((url) => (this.userAvatar = url));
+      this.fireSrv
+        .getFileUrl(`banners/${this.uniquePost.post.banner}`)
+        .subscribe((url) => (this.banner = url));
       this.categorias = post.categorias.map((cat) => cat.catId.titulo);
       this.tags = post.tags.map((tag) => tag.tagId.titulo);
       this.uniquePost.post.corpo = post.post.corpo.replace(
