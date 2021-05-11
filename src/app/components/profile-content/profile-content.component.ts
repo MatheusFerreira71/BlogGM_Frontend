@@ -38,7 +38,7 @@ export class ProfileContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkRoute();
-    this.setUser();
+    this.loadUser();
   }
 
   checkRoute(): void {
@@ -48,7 +48,7 @@ export class ProfileContentComponent implements OnInit {
     }
   }
 
-  setUser(): void {
+  loadUser(): void {
     if (this.isUserMe) {
       this.user$.subscribe(user => {
         if (user) {
@@ -90,7 +90,7 @@ export class ProfileContentComponent implements OnInit {
           "OK!",
           { duration: 5000 }
         );
-        this.setUser();
+        this.loadUser();
       }, error => {
         this.snackBar.open(
           `ERRO: não foi possível concluir a operação - ${error}`,

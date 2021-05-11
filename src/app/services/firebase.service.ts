@@ -25,6 +25,14 @@ export class FirebaseService {
     return await (await this.firebaseAuth.currentUser).delete()
   }
 
+  async updatePassword(newPassword: string) {
+    return (await this.firebaseAuth.currentUser).updatePassword(newPassword);
+  }
+
+  async updateEmail(newEmail: string) {
+    return (await this.firebaseAuth.currentUser).updateEmail(newEmail);
+  }
+
   getCurrentUser() {
     return this.firebaseAuth.currentUser;
   }
@@ -36,8 +44,8 @@ export class FirebaseService {
   deleteFile(path: string) {
     return this.firebaseStorage.ref(path).delete();
   }
+
   getFileUrl(path: string) {
     return this.firebaseStorage.ref(path).getDownloadURL()
   }
-
 }

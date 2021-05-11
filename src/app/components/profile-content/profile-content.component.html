@@ -2,10 +2,12 @@
   <div class="profile-content" *ngIf="user">
     <div class="viewTitle titlePc">Perfil do Usuário</div>
     <div class="profile-buttons" *ngIf="loggedIn$ | async">
-      <button class="profile-edit-button" *ngIf="(user$ | async)?.isAdm && user.isAdm" (click)="toggleAdm()">
+      <button class="profile-edit-button"
+        *ngIf="(user$ | async)?.isAdm && user.isAdm && user._id != (user$ | async)?._id" (click)="toggleAdm()">
         Remover ADM <mat-icon class="profile-edit">lock_open</mat-icon>
       </button>
-      <button class="profile-edit-button" *ngIf="(user$ | async)?.isAdm && !(user.isAdm)" (click)="toggleAdm()">
+      <button class="profile-edit-button"
+        *ngIf="(user$ | async)?.isAdm && !(user.isAdm) && user._id != (user$ | async)?._id" (click)="toggleAdm()">
         Tornar ADM <mat-icon class="profile-edit">lock</mat-icon>
       </button>
       <button class="profile-edit-button" [matMenuTriggerFor]="menu" *ngIf="(user$ | async)?._id == user._id">
@@ -13,8 +15,8 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>Alterar senha</button>
+        <button mat-menu-item>Alterar E-mail</button>
         <button mat-menu-item>Editar dados</button>
-        <button mat-menu-item>Desativar conta</button>
       </mat-menu>
       <button class="profile-edit-button" *ngIf="(user$ | async)?._id == user._id">
         Deletar <mat-icon class="profile-edit">delete</mat-icon>

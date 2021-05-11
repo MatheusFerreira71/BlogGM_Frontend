@@ -14,7 +14,6 @@ import { SignUpFormComponent } from './pages/sign-up-form/sign-up-form.component
 //Guards
 import { AdminGuard } from "./guards/admin.guard";
 import { LoggedGuard } from "./guards/logged.guard";
-import { OwnerGuard } from "./guards/owner.guard";
 import { DisconnectedGuard } from "./guards/disconnected.guard";
 import { ProfileComponent } from "./pages/profile/profile.component";
 
@@ -45,7 +44,7 @@ const routes: Routes = [
   {
     path: "editar/:id",
     component: CreateCardComponent,
-    canActivate: [OwnerGuard, AdminGuard, LoggedGuard]
+    canActivate: [AdminGuard, LoggedGuard]
   },
   {
     path: "auth",
