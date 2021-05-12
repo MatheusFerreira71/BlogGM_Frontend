@@ -62,7 +62,7 @@ export interface ReturnedUser extends User {
     createdAt?: Date
 }
 
-export interface DialogData {
+export interface ConfirmDialogData {
     question: string;
 }
 
@@ -161,4 +161,9 @@ export interface PostData {
 
 export interface RemovedTag extends TagsCadastro {
     _id: string;
+}
+
+export interface ResetPasswordDialogData {
+    password: string;
+    confirmPassword: string;
 }

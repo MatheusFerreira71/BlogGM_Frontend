@@ -9,6 +9,7 @@ import { ComentarioService } from 'src/app/services/comentario.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UserService } from 'src/app/services/user.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ResetPasswordDialogComponent } from '../reset-password-dialog/reset-password-dialog.component';
 
 @Component({
   selector: 'app-profile-content',
@@ -99,5 +100,20 @@ export class ProfileContentComponent implements OnInit {
         );
       })
     }
+  }
+
+  updatePassword() {
+    const dialogRef = this.dialog.open(ResetPasswordDialogComponent, { data: { password: '', confirmPassword: '' } });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Verificar se o usuário está logado a muito tempo se estiver pedir para reautenticar.
+        this.fireSrv.updatePassword(result).then(() => {
+          this.snackBar.open('Senha alterada com sucesso!', 'OK', { duration: 5000 });
+        }).catch(error => {
+          this.snackBar.open(`Algo deu errado! ❌ Erro: ${error}`, 'OK', { duration: 5000 });
+        })
+      }
+    })
   }
 }

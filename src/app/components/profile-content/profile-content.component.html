@@ -14,7 +14,7 @@
         Editar conta <mat-icon class="profile-edit">edit</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Alterar senha</button>
+        <button mat-menu-item (click)="updatePassword()">Alterar senha</button>
         <button mat-menu-item>Alterar E-mail</button>
         <button mat-menu-item>Editar dados</button>
       </mat-menu>

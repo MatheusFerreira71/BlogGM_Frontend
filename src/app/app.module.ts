@@ -56,7 +56,8 @@ import { AuthReducer } from './store/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppSpinnerComponent } from './components/app-spinner/app-spinner.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { ProfileContentComponent } from './components/profile-content/profile-content.component'
+import { ProfileContentComponent } from './components/profile-content/profile-content.component';
+import { ResetPasswordDialogComponent } from './components/reset-password-dialog/reset-password-dialog.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +92,8 @@ import { ProfileContentComponent } from './components/profile-content/profile-co
     SignUpFormComponent,
     AppSpinnerComponent,
     ProfileComponent,
-    ProfileContentComponent
+    ProfileContentComponent,
+    ResetPasswordDialogComponent
   ],
   imports: [
     BrowserModule,
