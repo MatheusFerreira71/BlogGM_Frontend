@@ -8,7 +8,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxPaginationModule } from "ngx-pagination";
 import { AngularEditorModule } from "@kolkov/angular-editor";
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { registerLocaleData } from "@angular/common";
 import ptBr from "@angular/common/locales/pt";
@@ -39,26 +39,26 @@ import { Error404ContentComponent } from "./components/error404-content/error404
 import { ComentarioCardComponent } from "./components/comentario-card/comentario-card.component";
 import { ComentarioContentComponent } from "./components/comentario-content/comentario-content.component";
 import { ComentarioFormComponent } from "./components/comentario-form/comentario-form.component";
-import { SeletorUsuarioComponent } from './components/seletor-usuario/seletor-usuario.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { AuthComponent } from './pages/auth/auth.component';
-import { SignUpFormComponent } from './pages/sign-up-form/sign-up-form.component';
+import { SeletorUsuarioComponent } from "./components/seletor-usuario/seletor-usuario.component";
+import { ConfirmDialogComponent } from "./components/confirm-dialog/confirm-dialog.component";
+import { AuthComponent } from "./pages/auth/auth.component";
+import { SignUpFormComponent } from "./pages/sign-up-form/sign-up-form.component";
 
 //Firebase
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from "@angular/fire";
 import { environment } from "src/environments/environment";
-import { FirebaseService } from './services/firebase.service';
-import { AngularFireStorageModule } from '@angular/fire/storage'
+import { FirebaseService } from "./services/firebase.service";
+import { AngularFireStorageModule } from "@angular/fire/storage";
 
 //State Management
 import { StoreModule } from "@ngrx/store";
-import { AuthReducer } from './store/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AppSpinnerComponent } from './components/app-spinner/app-spinner.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { ProfileContentComponent } from './components/profile-content/profile-content.component';
-import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component'
-import { ResetPasswordDialogComponent } from './components/reset-password-dialog/reset-password-dialog.component'
+import { AuthReducer } from "./store/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { AppSpinnerComponent } from "./components/app-spinner/app-spinner.component";
+import { ProfileComponent } from "./pages/profile/profile.component";
+import { ProfileContentComponent } from "./components/profile-content/profile-content.component";
+import { NavbarMenuComponent } from "./components/navbar-menu/navbar-menu.component";
+import { ResetPasswordDialogComponent } from "./components/reset-password-dialog/reset-password-dialog.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,11 +94,8 @@ import { ResetPasswordDialogComponent } from './components/reset-password-dialog
     AppSpinnerComponent,
     ProfileComponent,
     ProfileContentComponent,
-<<<<<<< HEAD
-    NavbarMenuComponent
-=======
-    ResetPasswordDialogComponent
->>>>>>> fb11e8bfa19ba390e1599373101138af571dd914
+    NavbarMenuComponent,
+    ResetPasswordDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,15 +110,20 @@ import { ResetPasswordDialogComponent } from './components/reset-password-dialog
     AngularFireStorageModule,
     ReactiveFormsModule,
     StoreModule.forRoot({
-      AuthState: AuthReducer
+      AuthState: AuthReducer,
     }),
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }) : []
+    !environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production,
+        })
+      : [],
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "pt" },
     { provide: NgForm, useValue: "ngForm" },
-    FirebaseService
+    FirebaseService,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
