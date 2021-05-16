@@ -1,0 +1,21 @@
+<h1 mat-dialog-title class="center">Alterar E-mail</h1>
+<div mat-dialog-content>
+  <p class="center">Informe o novo e-mail</p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Novo E-mail</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        [formControl]="email"
+        [(ngModel)]="data.email"
+        required
+      />
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </p>
+</div>
+<div mat-dialog-actions class="action-buttons">
+  <button mat-button color="warn" (click)="onNoClick()">Cancelar</button>
+  <button mat-button color="primary" [mat-dialog-close]="data.email">Ok</button>
+</div>

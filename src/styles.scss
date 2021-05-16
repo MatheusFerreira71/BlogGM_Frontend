@@ -34,10 +34,24 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-    background: repeating-linear-gradient(transparent, #363636, #212121, #363636, transparent);
+    background: repeating-linear-gradient(
+      transparent,
+      #363636,
+      #212121,
+      #363636,
+      transparent
+    );
 
     &:hover {
-      background: repeating-linear-gradient(transparent, #363636, #212121, #101010, #212121, #363636, transparent);
+      background: repeating-linear-gradient(
+        transparent,
+        #363636,
+        #212121,
+        #101010,
+        #212121,
+        #363636,
+        transparent
+      );
     }
   }
 }
@@ -111,4 +125,8 @@ a {
   }
 }
 
-// Spinner loading
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
                 this.setUser(returnedUser);
               });
           });
+        } else {
+          localStorage.clear();
         }
       })
       .then(() => {
