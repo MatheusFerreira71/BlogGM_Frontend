@@ -61,6 +61,7 @@
   width: 100%;
   overflow: hidden;
   display: flex;
+  position: relative;
   flex-direction: column;
   background-image: url("../../../assets/img/profile-background.jpg");
   background-size: cover;
@@ -151,7 +152,7 @@
     font-size: 18px;
     width: fit-content;
     height: fit-content;
-    color: white;
+    color: rgba(255, 255, 255, 0.75);
     user-select: none;
   }
 }
