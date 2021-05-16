@@ -46,10 +46,16 @@
     </button>
 
     <mat-menu #menu="matMenu">
-      <button routerLink="/me" mat-menu-item>
+      <button routerLink="/me" mat-menu-item (click)="this.navbarHidden = true">
         <span class="newsArrow">Perfil</span>
       </button>
-      <button mat-menu-item (click)="signOut()">Sair</button>
+      <button
+        mat-menu-item
+        (click)="signOut()"
+        (click)="this.navbarHidden = true"
+      >
+        Sair
+      </button>
     </mat-menu>
 
     <ng-template #loggedOut>
@@ -109,8 +115,14 @@
     </button>
     <ng-template #loggedOutMenu>
       <ul class="ul-logout">
-        <li><a routerLink="/auth">Entrar</a></li>
-        <li><a routerLink="/sign-up">Criar Conta</a></li>
+        <li>
+          <a routerLink="/auth" (click)="this.navbarHidden = true">Entrar</a>
+        </li>
+        <li>
+          <a routerLink="/sign-up" (click)="this.navbarHidden = true"
+            >Criar Conta</a
+          >
+        </li>
       </ul>
     </ng-template>
   </div>

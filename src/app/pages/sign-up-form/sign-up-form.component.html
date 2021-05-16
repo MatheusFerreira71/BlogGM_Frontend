@@ -54,10 +54,13 @@
           <mat-label>Biografia</mat-label>
           <textarea
             matInput
+            maxlength="250"
             placeholder="Escreva a sua biografia (opcional)"
             [(ngModel)]="bio"
             name="bio"
+            #textarea
           ></textarea>
+          <mat-hint align="end">{{ textarea.value?.length || 0 }}/250</mat-hint>
         </mat-form-field>
 
         <div class="imgUploader">
