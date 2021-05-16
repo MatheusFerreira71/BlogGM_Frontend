@@ -58,6 +58,7 @@ import { AppSpinnerComponent } from './components/app-spinner/app-spinner.compon
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProfileContentComponent } from './components/profile-content/profile-content.component';
 import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component'
+import { ResetPasswordDialogComponent } from './components/reset-password-dialog/reset-password-dialog.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +94,11 @@ import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.compon
     AppSpinnerComponent,
     ProfileComponent,
     ProfileContentComponent,
+<<<<<<< HEAD
     NavbarMenuComponent
+=======
+    ResetPasswordDialogComponent
+>>>>>>> fb11e8bfa19ba390e1599373101138af571dd914
   ],
   imports: [
     BrowserModule,

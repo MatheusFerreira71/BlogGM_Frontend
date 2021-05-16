@@ -28,6 +28,18 @@ body {
   background-size: auto;
   background-color: #30bdff;
   padding-bottom: 176px;
+
+  &::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: repeating-linear-gradient(transparent, #363636, #212121, #363636, transparent);
+
+    &:hover {
+      background: repeating-linear-gradient(transparent, #363636, #212121, #101010, #212121, #363636, transparent);
+    }
+  }
 }
 
 a {
