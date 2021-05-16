@@ -56,7 +56,8 @@ import { AuthReducer } from './store/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppSpinnerComponent } from './components/app-spinner/app-spinner.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { ProfileContentComponent } from './components/profile-content/profile-content.component'
+import { ProfileContentComponent } from './components/profile-content/profile-content.component';
+import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +92,8 @@ import { ProfileContentComponent } from './components/profile-content/profile-co
     SignUpFormComponent,
     AppSpinnerComponent,
     ProfileComponent,
-    ProfileContentComponent
+    ProfileContentComponent,
+    NavbarMenuComponent
   ],
   imports: [
     BrowserModule,

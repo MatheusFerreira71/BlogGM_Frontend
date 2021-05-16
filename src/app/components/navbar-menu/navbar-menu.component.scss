@@ -1,0 +1,14 @@
+.navbar-menu-wrapper {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  background-color: #212121;
+  color: #fff;
+  width: 80%;
+  height: 100vh;
+}
+
+.navbar-menu-line {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid hsl(0, 0%, 25%);
+}
