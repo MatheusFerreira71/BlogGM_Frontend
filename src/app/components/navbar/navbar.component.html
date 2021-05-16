@@ -59,7 +59,97 @@
       </ul>
     </ng-template>
   </div>
-  <button class="navMenu">
+
+  <button class="navMenu" (click)="toggleHidden()">
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
+
+<div
+  class="{{
+    navbarHidden ? 'navbar-menu-wrapper navbar-hidden' : 'navbar-menu-wrapper'
+  }}"
+>
+  <div class="navLogo-menu">
+    <a [routerLink]="['/']" (click)="this.navbarHidden = true">
+      <mat-icon class="miniLogo-menu">games</mat-icon>
+    </a>
+    <button (click)="toggleHidden()">
+      <mat-icon class="miniClose-menu">close</mat-icon>
+    </button>
+  </div>
+  <!-- Busca -->
+  <form class="searchBar-mobile" #f="ngForm" (ngSubmit)="pesquisar(f)">
+    <input
+      [(ngModel)]="pesquisa"
+      type="search"
+      placeholder="Buscar..."
+      class="inputSearch-mobile"
+      id="navbarSearch"
+      name="pesquisa"
+    />
+    <button type="submit" class="submitSearch">
+      <mat-icon class="submitIcon">search</mat-icon>
+    </button>
+  </form>
+
+  <!-- Usuário -->
+  <div class="login-menu">
+    <button
+      *ngIf="loggedIn$ | async; else loggedOutMenu"
+      mat-button
+      [matMenuTriggerFor]="menu"
+    >
+      <div class="userWrapper-menu">
+        <span>{{ (user$ | async)?.username }}</span>
+        <div class="userPic" *ngIf="profilePic">
+          <img src="{{ profilePic }}" />
+        </div>
+      </div>
+    </button>
+    <ng-template #loggedOutMenu>
+      <ul class="ul-logout">
+        <li><a routerLink="/auth">Entrar</a></li>
+        <li><a routerLink="/sign-up">Criar Conta</a></li>
+      </ul>
+    </ng-template>
+  </div>
+
+  <!-- NAVEGAÇÃO -->
+  <div class="navbar-menu-line line-nav">
+    <span class="navbar-menu-nav">Navegação</span>
+  </div>
+  <div class="navbar-menu-line">
+    <a [routerLink]="['/']" (click)="this.navbarHidden = true">Início</a>
+  </div>
+  <div class="navbar-menu-line">
+    <a [routerLink]="['/tags']" (click)="this.navbarHidden = true">Assuntos</a>
+  </div>
+  <div class="navbar-menu-line line-nav">
+    <span class="navbar-menu-nav">Categorias</span>
+  </div>
+  <div *ngFor="let categoria of allCategorias">
+    <div class="navbar-menu-line" *ngIf="!categoria.subs; else newSubs">
+      <a
+        routerLink="/busca/PostCategoria"
+        [queryParams]="{ id: categoria._id }"
+        (click)="this.navbarHidden = true"
+      >
+        {{ categoria.titulo }}</a
+      >
+    </div>
+    <ng-template #newSubs>
+      <div *ngFor="let sub of categoria.subs">
+        <div class="navbar-menu-line">
+          <a
+            routerLink="/busca/PostCategoria"
+            [queryParams]="{ id: sub._id }"
+            (click)="this.navbarHidden = true"
+          >
+            {{ categoria.titulo }} / {{ sub.titulo }}
+          </a>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

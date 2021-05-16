@@ -5,10 +5,11 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { FirebaseService } from "src/app/services/firebase.service";
-import { Reducers, ReturnedUser } from "src/app/interfaces";
+import { Categoria, Reducers, ReturnedUser } from "src/app/interfaces";
 import { setUser, setAuthState } from "../../store/actions";
 import { MatMenuTrigger } from "@angular/material/menu";
 import { ViewChild } from "@angular/core";
+import { NavbarService } from "src/app/services/navbar.service";
 
 @Component({
   selector: "app-navbar",
@@ -20,6 +21,8 @@ export class NavbarComponent implements OnInit {
   user$: Observable<ReturnedUser>;
   profilePic: string;
   pesquisa: string = "";
+  navbarHidden = true;
+  allCategorias: Categoria[];
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   someMethod() {
@@ -30,13 +33,15 @@ export class NavbarComponent implements OnInit {
     private route: Router,
     private store: Store<Reducers>,
     private fireSrv: FirebaseService,
-    private matSnack: MatSnackBar
+    private matSnack: MatSnackBar,
+    private navbarSrv: NavbarService
   ) {
     this.loggedIn$ = store.select((store) => store.AuthState.loggedIn);
     this.user$ = store.select((store) => store.AuthState.user);
   }
 
   ngOnInit(): void {
+    this.getCategorias();
     this.user$.subscribe((user) => {
       if (user) {
         this.fireSrv
@@ -44,6 +49,12 @@ export class NavbarComponent implements OnInit {
           .subscribe((url) => (this.profilePic = url));
       }
     });
+  }
+
+  getCategorias(): void {
+    this.navbarSrv
+      .listarAll()
+      .subscribe((categoria) => (this.allCategorias = categoria));
   }
 
   pesquisar(form: NgForm): void {
@@ -65,5 +76,9 @@ export class NavbarComponent implements OnInit {
         });
       });
     });
+  }
+
+  toggleHidden(): void {
+    this.navbarHidden = !this.navbarHidden;
   }
 }

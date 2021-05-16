@@ -57,7 +57,6 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { AppSpinnerComponent } from "./components/app-spinner/app-spinner.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { ProfileContentComponent } from "./components/profile-content/profile-content.component";
-import { NavbarMenuComponent } from "./components/navbar-menu/navbar-menu.component";
 import { ResetPasswordDialogComponent } from "./components/reset-password-dialog/reset-password-dialog.component";
 @NgModule({
   declarations: [
@@ -94,7 +93,6 @@ import { ResetPasswordDialogComponent } from "./components/reset-password-dialog
     AppSpinnerComponent,
     ProfileComponent,
     ProfileContentComponent,
-    NavbarMenuComponent,
     ResetPasswordDialogComponent,
   ],
   imports: [
