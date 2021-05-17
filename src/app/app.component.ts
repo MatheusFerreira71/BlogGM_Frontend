@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     private userSrv: UserService,
     private fireSrv: FirebaseService,
     private fireAuth: AngularFireAuth
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.fireAuth

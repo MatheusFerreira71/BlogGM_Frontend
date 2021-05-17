@@ -62,6 +62,7 @@ export class NavbarComponent implements OnInit {
     this.route.navigate(["busca/PostName"], {
       queryParams: { titulo: titulo.toLowerCase() },
     });
+    this.navbarHidden = true;
   }
 
   signOut(): void {

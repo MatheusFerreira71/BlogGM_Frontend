@@ -60,6 +60,7 @@ import { ProfileContentComponent } from "./components/profile-content/profile-co
 import { ResetPasswordDialogComponent } from "./components/reset-password-dialog/reset-password-dialog.component";
 import { ResetEmailDialogComponent } from './components/reset-email-dialog/reset-email-dialog.component';
 import { ResetAvatarDialogComponent } from './components/reset-avatar-dialog/reset-avatar-dialog.component';
+import { ReauthenticateDialogComponent } from './components/reauthenticate-dialog/reauthenticate-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +99,7 @@ import { ResetAvatarDialogComponent } from './components/reset-avatar-dialog/res
     ResetPasswordDialogComponent,
     ResetEmailDialogComponent,
     ResetAvatarDialogComponent,
+    ReauthenticateDialogComponent,
   ],
   imports: [
     BrowserModule,

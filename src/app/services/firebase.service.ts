@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { AngularFireStorage } from '@angular/fire/storage'
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,10 @@ export class FirebaseService {
 
   getFileUrl(path: string) {
     return this.firebaseStorage.ref(path).getDownloadURL()
+  }
+
+  async reauthenticateWithEmail(email: string, password: string) {
+    const credential = firebase.default.auth.EmailAuthProvider.credential(email, password);
+    return (await this.firebaseAuth.currentUser).reauthenticateWithCredential(credential);
   }
 }

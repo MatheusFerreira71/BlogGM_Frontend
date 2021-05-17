@@ -170,3 +170,8 @@ export interface ResetPasswordDialogData {
 export interface ResetEmailDialogData {
   email: string;
 }
+
+export interface ReauthenticateDialogData {
+  email: string;
+  password: string;
+}

@@ -9,6 +9,7 @@ import { ComentarioService } from "src/app/services/comentario.service";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { UserService } from "src/app/services/user.service";
 import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
+import { ReauthenticateDialogComponent } from "../reauthenticate-dialog/reauthenticate-dialog.component";
 import { ResetAvatarDialogComponent } from "../reset-avatar-dialog/reset-avatar-dialog.component";
 import { ResetEmailDialogComponent } from "../reset-email-dialog/reset-email-dialog.component";
 import { ResetPasswordDialogComponent } from "../reset-password-dialog/reset-password-dialog.component";
@@ -81,9 +82,8 @@ export class ProfileContentComponent implements OnInit {
     const question = isAdm
       ? "Deseja remover o privilégio administrador desse usuário?"
       : "Deseja conceder o privilégio administrador a esse usuário?";
-    const message = `Privilégio administrador ${
-      isAdm ? "removido" : "adicionado"
-    } com sucesso!`;
+    const message = `Privilégio administrador ${isAdm ? "removido" : "adicionado"
+      } com sucesso!`;
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: { question },
@@ -118,7 +118,6 @@ export class ProfileContentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // Verificar se o usuário está logado a muito tempo se estiver pedir para reautenticar.
         this.fireSrv
           .updatePassword(result)
           .then(() => {
@@ -127,9 +126,14 @@ export class ProfileContentComponent implements OnInit {
             });
           })
           .catch((error) => {
-            this.snackBar.open(`Algo deu errado! ❌ Erro: ${error}`, "OK", {
-              duration: 5000,
-            });
+            if (error.code === "auth/requires-recent-login") {
+              //Reautenticate
+              const reathenticateRef = this.dialog.open(ReauthenticateDialogComponent, { data: { email: this.user.email, password: '' } })
+            } else {
+              this.snackBar.open(`Algo deu errado! ❌ ${error}`, "OK", {
+                duration: 5000,
+              });
+            }
           });
       }
     });
