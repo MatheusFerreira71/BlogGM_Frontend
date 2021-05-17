@@ -9,6 +9,7 @@ import { ComentarioService } from "src/app/services/comentario.service";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { UserService } from "src/app/services/user.service";
 import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
+import { ResetAvatarDialogComponent } from "../reset-avatar-dialog/reset-avatar-dialog.component";
 import { ResetEmailDialogComponent } from "../reset-email-dialog/reset-email-dialog.component";
 import { ResetPasswordDialogComponent } from "../reset-password-dialog/reset-password-dialog.component";
 
@@ -155,5 +156,9 @@ export class ProfileContentComponent implements OnInit {
           });
       }
     });
+  }
+
+  updateAvatar(): void {
+    const dialogRef = this.dialog.open(ResetAvatarDialogComponent);
   }
 }

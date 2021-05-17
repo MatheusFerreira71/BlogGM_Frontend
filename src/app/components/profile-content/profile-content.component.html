@@ -45,10 +45,10 @@
     </div>
     <div class="profile-info">
       <div style="position: 'relative'">
-        <div class="profile-img-edit">
+        <div class="profile-img-edit" (click)="updateAvatar()">
           <mat-icon>photo_camera</mat-icon>
         </div>
-        <div class="profile-img">
+        <div class="profile-img" (click)="updateAvatar()">
           <span class="profile-text">Editar avatar</span>
           <img src="{{ userPic }}" alt="Imagem do perfil do usuário" />
         </div>
