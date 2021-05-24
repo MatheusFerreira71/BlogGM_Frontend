@@ -4,15 +4,17 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { Reducers, ReturnedUser } from "src/app/interfaces";
+import { Reducers, ReturnedUser, UpdateUserDialogData } from "src/app/interfaces";
 import { ComentarioService } from "src/app/services/comentario.service";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { UserService } from "src/app/services/user.service";
+import { setUser } from "src/app/store/actions";
 import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
 import { ReauthenticateDialogComponent } from "../reauthenticate-dialog/reauthenticate-dialog.component";
 import { ResetAvatarDialogComponent } from "../reset-avatar-dialog/reset-avatar-dialog.component";
 import { ResetEmailDialogComponent } from "../reset-email-dialog/reset-email-dialog.component";
 import { ResetPasswordDialogComponent } from "../reset-password-dialog/reset-password-dialog.component";
+import { UpdateUserDialogComponent } from "../update-user-dialog/update-user-dialog.component";
 
 @Component({
   selector: "app-profile-content",
@@ -43,6 +45,11 @@ export class ProfileContentComponent implements OnInit {
   ngOnInit(): void {
     this.checkRoute();
     this.loadUser();
+  }
+
+  setUser(user: ReturnedUser): void {
+    this.store.dispatch(setUser({ payload: user }));
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   checkRoute(): void {
@@ -128,8 +135,22 @@ export class ProfileContentComponent implements OnInit {
           .catch((error) => {
             if (error.code === "auth/requires-recent-login") {
               //Reautenticate
-              const reathenticateRef = this.dialog.open(ReauthenticateDialogComponent, { data: { email: this.user.email, password: '' } })
+              const reauthenticateRef = this.dialog.open(ReauthenticateDialogComponent, { data: { email: this.user.email, password: '' } });
+              reauthenticateRef.afterClosed().subscribe(async () => {
+                try {
+                  await this.fireSrv.updatePassword(result)
+                  this.snackBar.open("Senha alterada com sucesso!", "OK", {
+                    duration: 5000,
+                  });
+                } catch (err) {
+                  console.log(err);
+                  this.snackBar.open(`Algo deu errado! ❌ ${err}`, "OK", {
+                    duration: 5000,
+                  });
+                }
+              });
             } else {
+              console.log(error);
               this.snackBar.open(`Algo deu errado! ❌ ${error}`, "OK", {
                 duration: 5000,
               });
@@ -144,25 +165,87 @@ export class ProfileContentComponent implements OnInit {
       data: { email: "" },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(async result => {
+      const newUser: ReturnedUser = { ...this.user, email: result };
+
       if (result) {
-        this.fireSrv
-          .updateEmail(result)
-          .then(() => {
-            this.snackBar.open("E-mail alterado com sucesso!", "OK", {
-              duration: 5000,
-            });
-          })
-          .catch((error) => {
-            this.snackBar.open(`Algo deu errado! ❌ Erro: ${error}`, "OK", {
-              duration: 5000,
-            });
+        try {
+          const firebaseEmailUpdatePromise = this.fireSrv.updateEmail(result);
+          const databaseEmailUpdatePromise = this.userSrv.update(newUser).toPromise();
+          await Promise.all([firebaseEmailUpdatePromise, databaseEmailUpdatePromise]);
+          this.setUser(newUser);
+          this.loadUser();
+          this.snackBar.open("E-mail alterado com sucesso!", "OK", {
+            duration: 5000,
           });
+        } catch (error) {
+          if (error.code === "auth/requires-recent-login") {
+            //Reautenticate
+            const reauthenticateRef = this.dialog.open(ReauthenticateDialogComponent, { data: { email: this.user.email, password: '' } });
+            reauthenticateRef.afterClosed().subscribe(async () => {
+              try {
+                const firebaseEmailUpdatePromise = this.fireSrv.updateEmail(result);
+                const databaseEmailUpdatePromise = this.userSrv.update(newUser).toPromise();
+                await Promise.all([firebaseEmailUpdatePromise, databaseEmailUpdatePromise]);
+                this.setUser(newUser);
+                this.loadUser();
+                this.snackBar.open("E-mail alterado com sucesso!", "OK", {
+                  duration: 5000,
+                });
+              } catch (err) {
+                console.log(err);
+                this.snackBar.open(`Algo deu errado! ❌ ${err}`, "OK", {
+                  duration: 5000,
+                });
+              }
+            });
+          } else {
+            console.log(error);
+            this.snackBar.open(`Algo deu errado! ❌ ${error}`, "OK", {
+              duration: 5000,
+            });
+          }
+        };
       }
     });
   }
 
   updateAvatar(): void {
     const dialogRef = this.dialog.open(ResetAvatarDialogComponent);
+  }
+
+  async updateUser() {
+    const { bio, nome, username } = this.user
+    const dialogRef = this.dialog.open(UpdateUserDialogComponent, { width: '350px', data: { bio, nome, username }, disableClose: true });
+    try {
+      const result: UpdateUserDialogData = await dialogRef.afterClosed().toPromise();
+      if (result) {
+        const { bio, nome, username } = result;
+        const newUser = { ...this.user, bio, nome, username };
+        if (username === this.user.username) {
+          await this.userSrv.update(newUser).toPromise();
+          this.setUser(newUser);
+          this.loadUser();
+          this.snackBar.open("Dados editados com sucesso!", "OK", {
+            duration: 5000,
+          });
+        } else {
+          const returnedUser = await this.userSrv.findByUsername(username).toPromise();
+          if (!returnedUser) {
+            await this.userSrv.update(newUser).toPromise();
+            this.setUser(newUser);
+            this.loadUser();
+            this.snackBar.open("Dados editados com sucesso!", "OK", {
+              duration: 5000,
+            });
+          } else throw new Error('Nome de usuário já existe!');
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      this.snackBar.open(`Algo deu errado! ❌ ${error}`, "OK", {
+        duration: 5000,
+      });
+    }
   }
 }

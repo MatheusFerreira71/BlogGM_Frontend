@@ -1,1 +1,23 @@
-<p>reset-avatar-dialog works!</p>
+<h1 mat-dialog-title class="center">Editar Avatar</h1>
+<div mat-dialog-content>
+    <p class="center">Por favor, selecione um arquivo</p>
+    <div class="imgUploader">
+        <label for="avatar">Foto de Perfil</label>
+        <input style="display: none" id="avatar" placeholder="Escolha um arquivo" type="file"
+            (change)="handleFileInput($event.target.files[0])" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+        <button onclick="document.querySelector('#avatar').click()" class="imgButton">
+            Escolha a imagem
+        </button>
+        <span class="fileName">
+            {{avatar ? avatar : "Nenhum arquivo selecionado"}}
+        </span>
+    </div>
+    <div class="progress-container">
+        <mat-progress-bar mode="{{progressMode}}" class="progress-bar" value="upPercentage$ | async"></mat-progress-bar>
+        <p class="progress-bar-value" *ngIf="progressMode === 'determinate'">{{(upPercentage$ | async)}}%</p>
+    </div>
+</div>
+<div mat-dialog-actions class="action-buttons">
+    <button mat-button color="warn" (click)="onNoClick()">Cancelar</button>
+    <button mat-button color="primary">Ok</button>
+</div>

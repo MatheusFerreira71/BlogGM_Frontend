@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReauthenticateDialogData } from 'src/app/interfaces';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
@@ -10,13 +10,13 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./reauthenticate-dialog.component.scss']
 })
 export class ReauthenticateDialogComponent implements OnInit {
-  email = new FormControl("", [Validators.required, Validators.email]);
   hidePass = true;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ReauthenticateDialogData,
     public dialogRef: MatDialogRef<ReauthenticateDialogComponent>,
-    private fireSrv: FirebaseService
+    private fireSrv: FirebaseService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void { }
@@ -25,17 +25,13 @@ export class ReauthenticateDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  getErrorMessage() {
-    if (this.email.hasError("required")) {
-      return "Informe um e-mail";
+  async reauthenticate() {
+    try {
+      await this.fireSrv.reauthenticateWithEmail(this.data.email, this.data.password)
+      this.dialogRef.close();
+    } catch (error) {
+      console.log(error);
+      this.snackBar.open(`Algo deu errado ❌ ${error}`, 'OK', { duration: 5000 })
     }
-
-    return this.email.hasError("email") ? "E-mail não válido" : "";
-  }
-
-
-  reauthenticate(): void {
-    
-    this.dialogRef.close();
   }
 }

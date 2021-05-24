@@ -1,0 +1,28 @@
+<h1 mat-dialog-title class="center">Editar Dados</h1>
+<div mat-dialog-content>
+    <p class="center">Edite seus dados abaixo</p>
+    <form #f="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" required placeholder="Informe o seu nome de usuário" [(ngModel)]="data.username"
+                name="username">
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput type="text" required placeholder="Informe o seu nome" [(ngModel)]="data.nome" name="nome">
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-form-field appearance="outline">
+            <mat-label>Biografia</mat-label>
+            <textarea matInput maxlength="250" #textarea placeholder="Escreva a sua biografia (opcional)"
+                [(ngModel)]="data.bio" name="bio"></textarea>
+            <mat-hint align="end">{{ textarea.value?.length || 0 }}/250</mat-hint>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="action-buttons">
+    <button mat-button color="warn" type="button" (click)="onNoClick(f)">Cancelar</button>
+    <button mat-button color="primary" type="button" [mat-dialog-close]="data"
+        [disabled]="f.dirty && f.touched ? false : true">Salvar</button>
+</div>

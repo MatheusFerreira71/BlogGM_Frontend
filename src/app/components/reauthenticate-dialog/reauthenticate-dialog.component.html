@@ -1,16 +1,11 @@
-<h1 mat-dialog-title class="center">Login Antigo</h1>
+<h1 mat-dialog-title class="center">Reautenticação</h1>
 <div mat-dialog-content>
     <p class="center">Por favor, entre novamente</p>
+    <label for="email">E-mail</label>
+    <p id="email"> {{data.email}}</p>
     <p>
         <mat-form-field appearance="outline">
-            <mat-label>E-mail</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" [(ngModel)]="data.email" required />
-            <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="outline">
-            <mat-label>Nova senha</mat-label>
+            <mat-label>Senha</mat-label>
             <input matInput [type]="hidePass ? 'password' : 'text'" [(ngModel)]="data.password" required>
             <button mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hidePass">

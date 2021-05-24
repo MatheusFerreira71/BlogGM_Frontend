@@ -175,3 +175,9 @@ export interface ReauthenticateDialogData {
   email: string;
   password: string;
 }
+
+export interface UpdateUserDialogData {
+  bio: string;
+  nome: string;
+  username: string;
+}

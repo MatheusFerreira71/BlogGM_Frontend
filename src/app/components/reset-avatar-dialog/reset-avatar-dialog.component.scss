@@ -1,0 +1,19 @@
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-container {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    gap: 10px;
+    grid-template-areas: "progress-bar progress-bar-value";
+}
+
+.progress-bar-value {
+    display: flex;
+    justify-content: center;
+}
