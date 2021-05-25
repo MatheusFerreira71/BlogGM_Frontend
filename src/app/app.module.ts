@@ -62,6 +62,7 @@ import { ResetEmailDialogComponent } from './components/reset-email-dialog/reset
 import { ResetAvatarDialogComponent } from './components/reset-avatar-dialog/reset-avatar-dialog.component';
 import { ReauthenticateDialogComponent } from './components/reauthenticate-dialog/reauthenticate-dialog.component';
 import { UpdateUserDialogComponent } from './components/update-user-dialog/update-user-dialog.component';
+import { DeleteAccountDialogComponent } from './components/delete-account-dialog/delete-account-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,6 +103,7 @@ import { UpdateUserDialogComponent } from './components/update-user-dialog/updat
     ResetAvatarDialogComponent,
     ReauthenticateDialogComponent,
     UpdateUserDialogComponent,
+    DeleteAccountDialogComponent,
   ],
   imports: [
     BrowserModule,

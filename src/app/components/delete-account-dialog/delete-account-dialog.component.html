@@ -1,0 +1,13 @@
+<h1 mat-dialog-title class="center">Deletar Conta</h1>
+<div mat-dialog-content class="container">
+    <p class="center">Antes de prosseguir, leia e aceite os termos a seguir</p>
+    <section class="termos">
+        <p>Ao excluir sua conta toda atividade feita no site será excluída, isso inclúi posts, comentários, avatar e
+            dados do perfil. Não guardaremos nenhum dado após a exclusão da conta.</p>
+        <mat-checkbox [(ngModel)]="accepted">Eu aceito os termos de exclusão</mat-checkbox>
+    </section>
+</div>
+<div mat-dialog-actions class="action-buttons">
+    <button mat-button color="warn" (click)="onNoClick()">Cancelar</button>
+    <button mat-button color="primary" [disabled]="!accepted" (click)="deleteAccount()">Ok</button>
+</div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-reset-avatar-dialog',
@@ -13,10 +14,16 @@ export class ResetAvatarDialogComponent implements OnInit {
   avatarImage: File;
   progressMode = 'buffer';
   upPercentage$: Observable<number>;
+  ready = false;
+  cancel = true;
 
-  constructor(public dialogRef: MatDialogRef<ResetAvatarDialogComponent>, private snackBar: MatSnackBar) { }
 
-  ngOnInit(): void {
+  constructor(public dialogRef: MatDialogRef<ResetAvatarDialogComponent>, private snackBar: MatSnackBar, private fireSrv: FirebaseService) { }
+
+  ngOnInit(): void { }
+
+  round(valueToRound: number): number {
+    return Math.round(valueToRound);
   }
 
   onNoClick(): void {
@@ -33,7 +40,7 @@ export class ResetAvatarDialogComponent implements OnInit {
       this.avatarImage = file;
       const hash = Math.floor(Math.random() * (9999999999 - 1000000000 + 1) + 1000000000)
       this.avatar = `${hash}-${file.name}`;
-      this.progressMode = 'query'
+      this.ready = true
     } else {
       this.snackBar.open(
         "Selecione um arquivo JPG / JPEG / PNG / BMP",
@@ -41,5 +48,24 @@ export class ResetAvatarDialogComponent implements OnInit {
         { duration: 5000 }
       );
     }
+  }
+
+  async upload() {
+    try {
+      const tarefaUpload = this.fireSrv.uploadFile(`avatars/${this.avatar}`, this.avatarImage);
+      this.progressMode = 'determinate';
+      this.upPercentage$ = tarefaUpload.percentageChanges();
+      this.cancel = false;
+      this.ready = false;
+      await tarefaUpload;
+      await timer(500).toPromise();
+      this.dialogRef.close(this.avatar);
+    } catch (error) {
+      console.log(error);
+      this.snackBar.open(`Algo deu errado: ${error}`, 'Entendi', { duration: 5000 });
+      this.cancel = true;
+      this.ready = true;
+    }
+
   }
 }

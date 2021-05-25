@@ -45,6 +45,8 @@ export class AppComponent implements OnInit {
           });
         } else {
           localStorage.clear();
+          this.store.dispatch(setUser({ payload: null }));
+          this.store.dispatch(setAuthState({ payload: false }));
         }
       })
       .then(() => {

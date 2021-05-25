@@ -208,6 +208,30 @@
   }
 }
 
+.profile-img-other-profile {
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+  width: 128px;
+  height: 128px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: #212121;
+  border: 4px solid #212121;
+  position: relative;
+
+  img {
+    -webkit-transition: all 0.3s 0s ease-in-out;
+    -moz-transition: all 0.3s 0s ease-in-out;
+    -o-transition: all 0.3s 0s ease-in-out;
+    transition: all 0.3s 0s ease-in-out;
+    height: 128px;
+    width: auto;
+  }
+}
+
 .profile-persona {
   text-align: center;
   width: 100%;

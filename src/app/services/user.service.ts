@@ -31,4 +31,8 @@ export class UserService {
   update(user: ReturnedUser) {
     return this.http.put(`${this.apiUri}/`, user);
   }
+
+  delete(id: string): Observable<{ removed: boolean }> {
+    return this.http.delete<{ removed: boolean }>(`${this.apiUri}/${id}`);
+  }
 }

@@ -2,33 +2,21 @@
   <div class="profile-content" *ngIf="user">
     <div class="viewTitle titlePc">Perfil do Usuário</div>
     <div class="profile-buttons" *ngIf="loggedIn$ | async">
-      <button
-        class="profile-edit-button"
-        *ngIf="
+      <button class="profile-edit-button" *ngIf="
           (user$ | async)?.isAdm &&
           user.isAdm &&
           user._id != (user$ | async)?._id
-        "
-        (click)="toggleAdm()"
-      >
+        " (click)="toggleAdm()">
         Remover ADM <mat-icon class="profile-edit">lock_open</mat-icon>
       </button>
-      <button
-        class="profile-edit-button"
-        *ngIf="
+      <button class="profile-edit-button" *ngIf="
           (user$ | async)?.isAdm &&
           !user.isAdm &&
           user._id != (user$ | async)?._id
-        "
-        (click)="toggleAdm()"
-      >
+        " (click)="toggleAdm()">
         Tornar ADM <mat-icon class="profile-edit">lock</mat-icon>
       </button>
-      <button
-        class="profile-edit-button"
-        [matMenuTriggerFor]="menu"
-        *ngIf="(user$ | async)?._id == user._id"
-      >
+      <button class="profile-edit-button" [matMenuTriggerFor]="menu" *ngIf="(user$ | async)?._id == user._id">
         Editar conta <mat-icon class="profile-edit">edit</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
@@ -36,22 +24,24 @@
         <button mat-menu-item (click)="updateEmail()">Alterar E-mail</button>
         <button mat-menu-item (click)="updateUser()">Editar dados</button>
       </mat-menu>
-      <button
-        class="profile-edit-button"
-        *ngIf="(user$ | async)?._id == user._id"
-      >
+      <button class="profile-edit-button" *ngIf="(user$ | async)?._id == user._id" (click)="deleteAccount()">
         Deletar <mat-icon class="profile-edit">delete</mat-icon>
       </button>
     </div>
     <div class="profile-info">
       <div style="position: 'relative'">
-        <div class="profile-img-edit" (click)="updateAvatar()">
+        <div class="profile-img-edit" (click)="updateAvatar()" *ngIf="(user$ | async)?._id == user._id">
           <mat-icon>photo_camera</mat-icon>
         </div>
-        <div class="profile-img" (click)="updateAvatar()">
+        <div class="profile-img" (click)="updateAvatar()" *ngIf="(user$ | async)?._id == user._id; else otherProfile">
           <span class="profile-text">Editar avatar</span>
           <img src="{{ userPic }}" alt="Imagem do perfil do usuário" />
         </div>
+        <ng-template #otherProfile>
+          <div class="profile-img-other-profile">
+            <img src="{{ userPic }}" alt="Imagem do perfil do usuário" />
+          </div>
+        </ng-template>
         <div class="profile-persona">
           <span class="profile-nick"> {{ user.username }} </span>
           <span class="profile-name"> {{ user.nome }} </span>
@@ -62,7 +52,7 @@
           {{ commentCount$ | async
           }}<span>{{
             (commentCount$ | async) == 1 ? "Comentário" : "Comentários"
-          }}</span>
+            }}</span>
         </div>
         <div class="data-content">
           {{ user.createdAt | date: "shortDate" }}
