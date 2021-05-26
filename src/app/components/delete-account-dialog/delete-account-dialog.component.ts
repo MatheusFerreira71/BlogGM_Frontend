@@ -22,7 +22,7 @@ export class DeleteAccountDialogComponent implements OnInit {
 
   async deleteAccount() {
     const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { question: "Essa ação não tem volta, deseja continuar ?" },
+      data: { question: "Tem certeza que deseja desativar sua conta ?" },
     });
 
     try {

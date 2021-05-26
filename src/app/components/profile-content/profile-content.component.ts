@@ -271,19 +271,14 @@ export class ProfileContentComponent implements OnInit {
     }
   }
 
-  async deleteAccount() {
+  async deactivateAccount() {
     const dialogRef = this.dialog.open(DeleteAccountDialogComponent);
     try {
       const confirmation = await dialogRef.afterClosed().toPromise();
       if (confirmation) {
-        const promisses = []
-        promisses.push(this.fireSrv.deleteAccount());
-        promisses.push(this.userSrv.delete(this.user._id).toPromise());
-        if (this.user.avatar !== '4512F37DF69526S-avatar-padrao.png') promisses.push(this.fireSrv.deleteFile(`avatars/${this.user.avatar}`).toPromise());
-
-        await Promise.all(promisses);
+        await this.fireSrv.deleteAccount();
         await this.router.navigate(["/"]);
-        this.snackBar.open("Exclusão efetuada com sucesso.", "Entendi", {
+        this.snackBar.open("Conta desativada com sucesso!", "Entendi", {
           duration: 5000,
         });
       }
@@ -293,14 +288,9 @@ export class ProfileContentComponent implements OnInit {
         const reauthenticateRef = this.dialog.open(ReauthenticateDialogComponent, { data: { email: this.user.email, password: '' } });
         reauthenticateRef.afterClosed().subscribe(async () => {
           try {
-            const promisses = []
-            promisses.push(this.fireSrv.deleteAccount());
-            promisses.push(this.userSrv.delete(this.user._id).toPromise());
-            if (this.user.avatar !== '4512F37DF69526S-avatar-padrao.png') promisses.push(this.fireSrv.deleteFile(`avatars/${this.user.avatar}`).toPromise());
-
-            await Promise.all(promisses);
+            await this.fireSrv.deleteAccount();
             await this.router.navigate(["/"]);
-            this.snackBar.open("Exclusão efetuada com sucesso.", "Entendi", {
+            this.snackBar.open("Conta desativada com sucesso!", "Entendi", {
               duration: 5000,
             });
           } catch (err) {

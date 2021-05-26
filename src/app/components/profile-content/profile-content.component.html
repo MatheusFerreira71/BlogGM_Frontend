@@ -24,8 +24,8 @@
         <button mat-menu-item (click)="updateEmail()">Alterar E-mail</button>
         <button mat-menu-item (click)="updateUser()">Editar dados</button>
       </mat-menu>
-      <button class="profile-edit-button" *ngIf="(user$ | async)?._id == user._id" (click)="deleteAccount()">
-        Deletar <mat-icon class="profile-edit">delete</mat-icon>
+      <button class="profile-edit-button" *ngIf="(user$ | async)?._id == user._id" (click)="deactivateAccount()">
+        Desativar <mat-icon class="profile-edit">delete</mat-icon>
       </button>
     </div>
     <div class="profile-info">

@@ -1,10 +1,13 @@
-<h1 mat-dialog-title class="center">Deletar Conta</h1>
+<h1 mat-dialog-title class="center">Desativar Conta</h1>
 <div mat-dialog-content class="container">
     <p class="center">Antes de prosseguir, leia e aceite os termos a seguir</p>
     <section class="termos">
-        <p>Ao excluir sua conta toda atividade feita no site será excluída, isso inclúi posts, comentários, avatar e
-            dados do perfil. Não guardaremos nenhum dado após a exclusão da conta.</p>
-        <mat-checkbox [(ngModel)]="accepted">Eu aceito os termos de exclusão</mat-checkbox>
+        <p>
+            Ao desativar sua conta você não poderá mais fazer alterações, postar ou comentar em nosso site até
+            reativá-la. Seus posts e comentários ainda estarão disponíveis
+            no blog para os outros usuários.
+        </p>
+        <mat-checkbox [(ngModel)]="accepted">Eu aceito os termos acima</mat-checkbox>
     </section>
 </div>
 <div mat-dialog-actions class="action-buttons">
